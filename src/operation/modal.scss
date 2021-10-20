@@ -1,0 +1,20 @@
+.grey-background {
+    position: fixed;
+    top: 0px;
+    background-color: rgba(153, 153, 153, 0.527);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.add-edit-modal {
+    background-color: white;
+    margin: 10px;
+    border: rgb(119, 119, 119);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    width: 50%;
+    height: fit-content;
+}
