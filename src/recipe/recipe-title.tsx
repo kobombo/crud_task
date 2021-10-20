@@ -1,14 +1,19 @@
+import { useDispatch } from "react-redux"
+import { selectRecipe } from "../operation/operation-actions";
 import { Recipe } from "./recipe-types"
 import "./recipe.scss"
 
 interface RecipeTitleProps {
     recipe: Recipe;
+    isSelected?: boolean,
 }
 
-export const RecipeTitle: React.FC<RecipeTitleProps> = ({ recipe }) => {
+export const RecipeTitle: React.FC<RecipeTitleProps> = ({ recipe, isSelected }) => {
+    const dispatch = useDispatch();
+    const className = `recipe-title ${isSelected && 'selected'}`
     return (
-        <div className='recipe-title'
-            onClick={() => console.warn('testtttt')}>
+        <div className={className}
+            onClick={() => dispatch(selectRecipe(recipe.id))}>
             {recipe.name}
         </div>
     )

@@ -5,13 +5,14 @@ import "./recipe.scss"
 
 interface RecipeProps {
     recipe: Recipe;
+    isSelected?: boolean
 }
 
-export const RecipeElement: React.FC<RecipeProps> = ({ recipe }) => {
+export const RecipeElement: React.FC<RecipeProps> = ({ recipe, isSelected }) => {
     return (
         <div className='recipe-element'>
-            <RecipeTitle recipe={recipe} />
-            <RecipeContent recipe={recipe} />
+            <RecipeTitle recipe={recipe} isSelected={isSelected} />
+            {isSelected && <RecipeContent recipe={recipe} />}
         </div >
     )
 }

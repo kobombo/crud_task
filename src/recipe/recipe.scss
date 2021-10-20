@@ -17,6 +17,11 @@
     }
 }
 
+.selected {
+    border-bottom-left-radius: 0%;
+    border-bottom-right-radius: 0%;
+}
+
 .recipe-content {
     background-color: rgb(255, 255, 255);
     padding: 15px;
