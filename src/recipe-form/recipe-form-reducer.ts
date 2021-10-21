@@ -1,5 +1,5 @@
 import { Reducer } from "redux";
-import { RecipeFormAction, RecipeFormActionType, RecipeFormState, RecipeFormType } from "./recipe-form-types";
+import { OpenEditFormAction, RecipeFormAction, RecipeFormActionType, RecipeFormState, RecipeFormType, SelectRecipeAction } from "./recipe-form-types";
 
 const defaultRecipeFormState = { recipeFormType: RecipeFormType.NONE }
 
@@ -9,30 +9,46 @@ export const recipeFormReducer: Reducer<RecipeFormState, RecipeFormAction> = (
 ) => {
     switch (action.type) {
         case RecipeFormActionType.SELECT:
-            const newState = { ...state };
-            if (newState.selectedRecipeId === action.data) {
-                delete newState.selectedRecipeId;
-            } else {
-                newState.selectedRecipeId = action.data;
-            }
-            return newState;
+            return selectRecipe(state, action);
         case RecipeFormActionType.ADD:
-            return {
-                ...state,
-                recipeFormType: RecipeFormType.ADD,
-            }
+            return requestAddForm(state)
         case RecipeFormActionType.EDIT:
-            return {
-                ...state,
-                recipeFormType: RecipeFormType.EDIT,
-                editedRecipe: action.data,
-            }
+            return requestEditForm(state, action)
         case RecipeFormActionType.CLOSE_FORM:
-            return {
-                selectedRecipeId: state.selectedRecipeId,
-                recipeFormType: RecipeFormType.NONE,
-            }
+            return closeForm(state)
         default:
             return state;
     }
+}
+
+function selectRecipe(state: RecipeFormState, action: SelectRecipeAction) {
+    const newState = { ...state };
+    if (newState.selectedRecipeId === action.data) {
+        delete newState.selectedRecipeId;
+    } else {
+        newState.selectedRecipeId = action.data;
+    }
+    return newState;
+}
+
+function requestAddForm(state: RecipeFormState): RecipeFormState {
+    return {
+        ...state,
+        recipeFormType: RecipeFormType.ADD,
+    };
+}
+
+function requestEditForm(state: RecipeFormState, action: OpenEditFormAction): RecipeFormState {
+    return {
+        ...state,
+        recipeFormType: RecipeFormType.EDIT,
+        editedRecipe: action.data,
+    };
+}
+
+function closeForm(state: RecipeFormState): RecipeFormState {
+    return {
+        selectedRecipeId: state.selectedRecipeId,
+        recipeFormType: RecipeFormType.NONE,
+    };
 }
