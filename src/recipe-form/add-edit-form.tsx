@@ -38,46 +38,36 @@ const AddEditForm: React.FC<AddEditFormProps> = ({ title, recipe }) => {
     return (
         <div className='grey-background'>
             <div className='add-edit-form'>
-                {recipeHeader(title)}
-                {recipeContentSection(recipeName, handleNameChange, ingredients, handleIngredientsChange)}
-                {buttonSection(recipe, recipeName, ingredients)}
+                <div className="add-edit-form-header">
+                    {title}
+                </div>
+                <div className="add-edit-form-content">
+                    Recipe
+                    <div>
+                        <textarea className="add-edit-form-input recipe-name"
+                            value={recipeName}
+                            placeholder={'Recipe Name'}
+                            onChange={handleNameChange}
+                        />
+                    </div>
+                    Ingredients
+                    <div>
+                        <textarea className="add-edit-form-input ingredients"
+                            value={ingredients}
+                            placeholder={'Enter ingredients,separated,by commas'}
+                            onChange={handleIngredientsChange}
+                        />
+                    </div>
+                </div>
+                <div className="form-button-section">
+                    <SaveRecipeButton recipe={{
+                        id: recipe?.id,
+                        name: recipeName,
+                        ingredients: ingredients.split(','),
+                    }} />
+                    <CloseModalButton />
+                </div>
             </div>
         </div>
     )
-}
-
-function recipeHeader(title: string) {
-    return <div className="add-edit-form-header">
-        {title}
-    </div>
-}
-
-function recipeContentSection(recipeName: string, handleNameChange: (event: { target: { value: SetStateAction<string>} } ) => void, ingredients: string, handleIngredientsChange: (event: { target: { value: SetStateAction<string>} } ) => void) {
-    return <div className="add-edit-form-content">
-        Recipe
-        <div>
-            <textarea className="add-edit-form-input recipe-name"
-                value={recipeName}
-                placeholder={'Recipe Name'}
-                onChange={handleNameChange} />
-        </div>
-        Ingredients
-        <div>
-            <textarea className="add-edit-form-input ingredients"
-                value={ingredients}
-                placeholder={'Enter ingredients,separated,by commas'}
-                onChange={handleIngredientsChange} />
-        </div>
-    </div>
-}
-
-function buttonSection(recipe: Recipe | undefined, recipeName: string, ingredients: string) {
-    return <div className="form-button-section">
-        <SaveRecipeButton recipe={{
-            id: recipe?.id,
-            name: recipeName,
-            ingredients: ingredients.split(','),
-        }} />
-        <CloseModalButton />
-    </div>
 }

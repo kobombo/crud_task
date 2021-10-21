@@ -19,7 +19,7 @@ export const recipeReducer: Reducer<RecipesState, RecipeAction> = (
     }
 }
 
-function addRecipe(action: AddRecipeAction, state: RecipesState) {
+const addRecipe = (action: AddRecipeAction, state: RecipesState) => {
     const newRecipe = {
         ...action.data,
         id: Math.random().toString(16).slice(2),
@@ -32,7 +32,7 @@ function addRecipe(action: AddRecipeAction, state: RecipesState) {
     };
 }
 
-function editRecipe(state: RecipesState, action: EditRecipeAction) {
+const editRecipe = (state: RecipesState, action: EditRecipeAction) => {
     const recipesUpdated = state.recipes
         .map(recipe => recipe.id === action.data.id
             ? { ...recipe, ...action.data }
@@ -44,7 +44,7 @@ function editRecipe(state: RecipesState, action: EditRecipeAction) {
     };
 }
 
-function deleteRecipe(state: RecipesState, action: DeleteRecipeAction) {
+const deleteRecipe = (state: RecipesState, action: DeleteRecipeAction) => {
     const recipesLeft = state.recipes
         .filter(recipe => recipe.id !== action.data);
     return {

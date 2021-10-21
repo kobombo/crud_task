@@ -21,7 +21,7 @@ export const recipeFormReducer: Reducer<RecipeFormState, RecipeFormAction> = (
     }
 }
 
-function selectRecipe(state: RecipeFormState, action: SelectRecipeAction) {
+const selectRecipe = (state: RecipeFormState, action: SelectRecipeAction) => {
     const newState = { ...state };
     if (newState.selectedRecipeId === action.data) {
         delete newState.selectedRecipeId;
@@ -31,14 +31,14 @@ function selectRecipe(state: RecipeFormState, action: SelectRecipeAction) {
     return newState;
 }
 
-function requestAddForm(state: RecipeFormState): RecipeFormState {
+const requestAddForm = (state: RecipeFormState): RecipeFormState => {
     return {
         ...state,
         recipeFormType: RecipeFormType.ADD,
     };
 }
 
-function requestEditForm(state: RecipeFormState, action: OpenEditFormAction): RecipeFormState {
+const requestEditForm = (state: RecipeFormState, action: OpenEditFormAction): RecipeFormState => {
     return {
         ...state,
         recipeFormType: RecipeFormType.EDIT,
@@ -46,7 +46,7 @@ function requestEditForm(state: RecipeFormState, action: OpenEditFormAction): Re
     };
 }
 
-function closeForm(state: RecipeFormState): RecipeFormState {
+const closeForm = (state: RecipeFormState): RecipeFormState => {
     return {
         selectedRecipeId: state.selectedRecipeId,
         recipeFormType: RecipeFormType.NONE,
