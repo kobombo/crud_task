@@ -5,7 +5,7 @@ import "./recipe-list.scss"
 
 export const RecipeListContainer: React.FC = () => {
     const recipes = useSelector((state: RootState) => state.recipeReducer.recipes || []);
-    const selectedRecipeId = useSelector((state: RootState) => state.operationReducer.selectedRecipeId);
+    const selectedRecipeId = useSelector((state: RootState) => state.recipeFormReducer.selectedRecipeId);
 
     return (
         <div className='recipe-list-container'>

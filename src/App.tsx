@@ -1,15 +1,14 @@
 import React from 'react';
 import './App.scss';
 import { RecipeListContainer } from './recipe-list/recipe-list-container';
-import { AddRecipeButton } from './operation/button';
-import { AddModal, EditModal } from './operation/add-edit-modal';
-import { useDispatch, useSelector } from 'react-redux';
+import { AddRecipeButton } from './recipe-form/button';
+import { AddForm, EditForm } from './recipe-form/add-edit-form';
+import { useSelector } from 'react-redux';
 import { RootState } from './redux/store';
-import { OperationType } from './operation/operation-types';
-import { openAddModal } from './operation/operation-actions';
+import { RecipeFormType } from './recipe-form/recipe-form-types';
 
 function App() {
-  const operationType = useSelector((state: RootState) => state.operationReducer.operationType);
+  const recipeFormType = useSelector((state: RootState) => state.recipeFormReducer.recipeFormType);
   
   return (
     <>
@@ -17,8 +16,8 @@ function App() {
         <RecipeListContainer />
         <AddRecipeButton />
       </div>
-      {operationType === OperationType.ADD && <AddModal />}
-      {operationType === OperationType.EDIT && <EditModal />}
+      {recipeFormType === RecipeFormType.ADD && <AddForm />}
+      {recipeFormType === RecipeFormType.EDIT && <EditForm />}
     </>
   );
 }

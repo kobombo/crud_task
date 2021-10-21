@@ -3,27 +3,27 @@ import { useSelector } from "react-redux"
 import { Recipe } from "../recipe/recipe-types"
 import { RootState } from "../redux/store"
 import { CloseModalButton, SaveRecipeButton } from "./button"
-import "./modal.scss"
+import "./recipe-form.scss"
 
-interface AddEditModalProps {
+interface AddEditFormProps {
     title: string;
     recipe?: Recipe
 }
 
-export const AddModal: React.FC = () => {
+export const AddForm: React.FC = () => {
     return (
-        <AddEditModal title={"Add a Recipe"} />
+        <AddEditForm title={"Add a Recipe"} />
     )
 }
 
-export const EditModal: React.FC = () => {
-    const editedRecipe = useSelector((state: RootState) => state.operationReducer.editedRecipe);
+export const EditForm: React.FC = () => {
+    const editedRecipe = useSelector((state: RootState) => state.recipeFormReducer.editedRecipe);
     return (
-        <AddEditModal title={"Edit Recipe"} recipe={editedRecipe} />
+        <AddEditForm title={"Edit Recipe"} recipe={editedRecipe} />
     )
 }
 
-const AddEditModal: React.FC<AddEditModalProps> = ({ title, recipe }) => {
+const AddEditForm: React.FC<AddEditFormProps> = ({ title, recipe }) => {
     const [recipeName, setRecipeName] = useState(recipe ? recipe.name : "");
     const [ingredients, setIngredients] = useState(recipe?.ingredients ? recipe.ingredients.toString() : "");
 
@@ -37,14 +37,14 @@ const AddEditModal: React.FC<AddEditModalProps> = ({ title, recipe }) => {
 
     return (
         <div className='grey-background'>
-            <div className='add-edit-modal'>
-                <div className="add-edit-modal-header">
+            <div className='add-edit-form'>
+                <div className="add-edit-form-header">
                     {title}
                 </div>
-                <div className="add-edit-modal-content">
+                <div className="add-edit-form-content">
                     Recipe
                     <div>
-                        <textarea className="add-edit-modal-input recipe-name"
+                        <textarea className="add-edit-form-input recipe-name"
                             value={recipeName}
                             placeholder={'Recipe Name'}
                             onChange={handleNameChange}
@@ -52,14 +52,14 @@ const AddEditModal: React.FC<AddEditModalProps> = ({ title, recipe }) => {
                     </div>
                     Ingredients
                     <div>
-                        <textarea className="add-edit-modal-input ingredients"
+                        <textarea className="add-edit-form-input ingredients"
                             value={ingredients}
                             placeholder={'Enter ingredients,separated,by commas'}
                             onChange={handleIngredientsChange}
                         />
                     </div>
                 </div>
-                <div className="modal-button-section">
+                <div className="form-button-section">
                     <SaveRecipeButton recipe={{
                         id: recipe?.id,
                         name: recipeName,

@@ -1,4 +1,4 @@
-import { DeleteRecipeButton, EditRecipeButton } from "../operation/button"
+import { DeleteRecipeButton, EditRecipeButton } from "../recipe-form/button"
 import { Recipe } from "./recipe-types"
 import "./recipe.scss"
 

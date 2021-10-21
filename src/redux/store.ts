@@ -1,19 +1,19 @@
 import { combineReducers, createStore } from 'redux';
 import { recipeReducer } from '../recipe/recipe-reducer';
-import { operationReducer } from '../operation/operation-reducer';
+import { recipeFormReducer } from '../recipe-form/recipe-form-reducer';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { RootStateOrAny } from 'react-redux';
 
 const rootReducer = combineReducers({
   recipeReducer,
-  operationReducer,
+  recipeFormReducer,
 });
 
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['operationReducer']
+  blacklist: ['recipeFormReducer']
 };
 
 const persistedReducer = persistReducer<RootStateOrAny>(persistConfig, rootReducer as RootStateOrAny);

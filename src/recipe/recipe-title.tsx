@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux"
-import { selectRecipe } from "../operation/operation-actions";
+import { selectRecipe } from "../recipe-form/recipe-form-actions";
 import { Recipe } from "./recipe-types"
 import "./recipe.scss"
 

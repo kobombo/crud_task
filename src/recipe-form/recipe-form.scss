@@ -8,7 +8,7 @@
     justify-content: center;
 }
 
-.add-edit-modal {
+.add-edit-form {
     background-color: white;
     margin: 10px;
     border: rgb(119, 119, 119);
@@ -19,7 +19,7 @@
     height: fit-content;
 }
 
-.add-edit-modal-header {
+.add-edit-form-header {
     padding: 15px;
     font-weight: bold;
     font-size: large;
@@ -28,14 +28,14 @@
     border-width: 1px;
 }
 
-.add-edit-modal-content {
+.add-edit-form-content {
     margin: 10px 0px;
     padding: 15px;
     font-weight: bold;
     border-bottom:solid 1px #ccc;
 }
 
-.add-edit-modal-input {
+.add-edit-form-input {
     margin: 10px 0px;
     padding: 2px;
     width: 99%;
@@ -54,7 +54,7 @@
     min-height: 50px;
 }
 
-.modal-button-section {
+.form-button-section {
     display: flex;
     justify-content: right;
     padding: 15px;
